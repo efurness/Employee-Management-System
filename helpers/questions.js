@@ -20,8 +20,8 @@ module.exports = {
                 name: "addDepartment",
             }
         ])
-    },   
-    
+    },
+
     const addRolePrompt = () => {
         inquirer.prompt([
 
@@ -54,9 +54,9 @@ module.exports = {
             }
 
         ])
-    
+
     }
-    
+
 }
 
-modules.exports = startPrompt, addDepartmentPrompt, addRolePrompt, updateRolePrompt
+modules.exports = startPrompt, addDepartmentPrompt, addRolePrompt, addEmployeePrompt, updateRolePrompt
