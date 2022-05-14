@@ -21,6 +21,7 @@ app.use(express.json());
 const db = mysql.createConnection(
     {
       host: 'localhost',
+      dialect: 'mysql',
       // MySQL username,
       user: 'root',
       // TODO: Add MySQL password here
@@ -31,18 +32,11 @@ const db = mysql.createConnection(
   );
   
 // function to initialize app
-function init() {
-    inquirer
-    .prompt([
-        {
-            type: "list",
-            message: "Please choose an option",
-            choices: ["View all Departments", "Add a Department", "View all Roles", "Add a role", "Add an Employee", "Update an Employee Role"],
-            name: "prompt"
-        }
-    ])
-    .then((response => {
-        switch(response.initial) [
+async function begin() {
+    const yourAnswer = await inquirer.prompt(question.question);
+
+
+        switch(yourAnswer.start) {
             case 'View all Departments':
                 viewDepartmemts();
                 break;
@@ -53,7 +47,7 @@ function init() {
                 viewRoles();
                 break;
             case 'Add Role':
-                viewRoles();
+                addRole();
                 break;    
             case 'View all Employees':
                 viewEmployees();
@@ -62,11 +56,14 @@ function init() {
                 viewEmployees();
                 break;
                 default:
-                    
         }
-            ]
-    })),
-}
+    }             
+
+// Query database
+db.query('SELECT * FROM employment.db', function (err, results) {
+    console.log(results);
+  });
+
   // Default response for any other request (Not Found)
 app.use((req, res) => {
     res.status(404).end();
@@ -75,3 +72,5 @@ app.use((req, res) => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
+
+  
