@@ -83,7 +83,7 @@ async function begin() {
 
 }
 
-    viewDept = () => {
+    viewDepartmemts = () => {
         connection.query("SELECT * FROM department", (err, res) => {
         if (err) throw err;
         console.table(res);
@@ -91,15 +91,15 @@ async function begin() {
     });
 
 
-    viewEmp = () => {
-        connection.query("SELECT * employee", (err, res) => {
+    viewRoles = () => {
+        connection.query("SELECT * emproles", (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
 
 
-    viewRoles = () => {
+    viewEmployees = () => {
         connection.query("SELECT title FROM employee", (err, res) => {
             if (err) throw err;
             console.table(res);
@@ -167,16 +167,57 @@ async function begin() {
 
                 {
                     type: "input",
-                    message: "what is the name of the employee you wish to add?",
+                    message: "what is the first name of the employee you wish to add?",
                     name: "addEmployee",
 
-                }
+                },
             ]).then(function (data) {
-                db.query('INSERT INTO department', function (err, results) {
+                db.query('INSERT INTO employee', function (err, results) {
                     console.log(results);
                 });
+
+                inquirer.prompt([
+                {
+                    type: "input",
+                    message: "what is the last name of the employee you wish to add?",
+                    name: "firstNameEmployee",
+
+                },
+
+            ]).then(function (data) {
+                db.query('INSERT INTO employee last_name', function (err, results) {
+                    console.log(results);
+                });
+
+                inquirer.prompt([
+                {
+                    type: "input",
+                    message: "what is the salary of the employee you wish to add?",
+                    name: "salaryEmployee",
+
+                },
+            ]).then(function (data) {
+                db.query('INSERT INTO employee salary', function (err, results) {
+                    console.log(results);
+                });
+                
+                inquirer.prompt([
+
+                {
+                    type: "input",
+                    message: "what is the department of the employee you wish to add?",
+                    name: "departmentEmployee",
+
+                },
+
+            ]).then(function (data) {
+                db.query('INSERT INTO employee department', function (err, results) {
+                    console.log(results);
+                });
+                
+                
             })
-        },
+        
         
 
         const updateRolePrompt = () => {
