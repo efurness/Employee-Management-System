@@ -46,22 +46,22 @@ async function begin() {
 
     ]).then(function (choice) {
         switch (choice.prompt) {
-            case 'View all Departments':
+            case 'View all departments':
                 viewDepartmemts();
                 break;
-            case 'Add a Department':
+            case 'Add a department':
                 AddDepartmemts();
                 break;
-            case 'View all Roles':
+            case 'View all roles':
                 viewRoles();
                 break;
-            case 'Add Role':
-                addRole();
-                break;
-            case 'View all Employees':
+            case 'Add an employee':
+                addEmployee();
+                break;                
+            case 'View all employees':
                 viewEmployees();
                 break;
-            case 'Update Employee Role':
+            case 'update employee role':
                 updateEmployees();
                 break;
             case 'Update Employee Managers':
@@ -77,50 +77,52 @@ async function begin() {
                 deleteEmployee();
                 break;
             default:
-                exit()
+                break;
         }
     })
 
 }
 
-    viewDepartmemts = () => {
-        connection.query("SELECT * FROM department", (err, res) => {
+    const viewDepartmemts = () => {
+        db.query("SELECT * FROM department", (err, res) => {
         if (err) throw err;
         console.table(res);
         begin()
     });
 
+    }
 
-    viewRoles = () => {
-        connection.query("SELECT * emproles", (err, res) => {
+    const viewRoles = () => {
+        db.query("SELECT * emproles", (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
 
+    }
 
-    viewEmployees = () => {
-        connection.query("SELECT title FROM employee", (err, res) => {
+    const viewEmployees = () => {
+        db.query("SELECT title FROM employee", (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
- 
+    }
 
-    viewEmpManager = () => {
-        connection.query("SELECT manager_id FROM employee", async (err, employee) => {
+    const viewEmpManager = () => {
+        db.query("SELECT manager_id FROM employee", async (err, employee) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
-
-    UpdateEmp = () => {
-        connection.query("UPDATE employee FROM employee", async (err, employee) => {
+    }
+    const UpdateEmp = () => {
+        db.query("UPDATE employee FROM employee", async (err, employee) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
-
+    }
 
     const addDepartmentPrompt = () => {
     inquirer.prompt([
@@ -161,8 +163,10 @@ async function begin() {
 
                     }])
             })
-        },
-        const addEmployeePrompt = () => {
+        }
+    })
+}   
+         const addEmployeePrompt = () => {
             inquirer.prompt([
 
                 {
@@ -171,8 +175,9 @@ async function begin() {
                     name: "addEmployee",
 
                 },
+
             ]).then(function (data) {
-                db.query('INSERT INTO employee', function (err, results) {
+                db.query('INSERT INTO employee first_name', function (err, results) {
                     console.log(results);
                 });
 
@@ -218,9 +223,9 @@ async function begin() {
                 
             })
         
-        
-
-        const updateRolePrompt = () => {
+        }
+            )})})}
+         const updateRolePrompt = () => {
             inquirer.prompt([
 
                 {
@@ -257,7 +262,7 @@ async function begin() {
                 res.status(404).end();
             });
 
-        let deletedRow = 2;
+        // let deletedRow = 2; dse
 
         // db.query(`DELETE FROM department WHERE id = ?`, deletedRow, (err, result) => {
         //   if (err) {
@@ -286,3 +291,4 @@ async function begin() {
             begin()
         });
 
+        
