@@ -12,7 +12,7 @@
 
 # DESCRIPTION 
 
-This is a command line application running on NODE JS and takes user input to output a series of tables for an employment database using a mysql connection. An async function was used to initialize application followed by a prompt for user to select to view a series of tables including departments, roles and employees with a sqitch statement prompting each question.  The program worked well with the view prompts and SELECT all queries, and additionally to add a department, however to add employees and roles were difficult to complete because even though they followed the switch statements for each of them, the const variables were greyed out.  That is a work in progress.
+This is a command line application running on NODE JS and takes user input to output a series of tables for an employment database using a mysql connection. An async function was used to initialize application followed by a prompt for user to select to view a series of tables including departments, roles and employees with a switch statement prompting each question.  The program worked well with the view prompts and SELECT all queries, and additionally to add a department, however to add employees and roles was difficult to complete because even though they followed the switch statements for each of them, the const variables were greyed out.  That is a work in progress.
 
 # INSTALLATION 
 
