@@ -1,4 +1,4 @@
-# Employee-Management-System![GitHub license](https://img.shields.io/badge/license-undefined-blue.svg)
+# Employee Management System![GitHub license](https://img.shields.io/badge/license-undefined-blue.svg)
 
 # TABLE OF CONTENTS 
 
