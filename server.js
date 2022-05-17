@@ -93,7 +93,7 @@ async function begin() {
     }
 
     const viewRoles = () => {
-        db.query("SELECT * emproles", (err, res) => {
+        db.query("SELECT * FROM emprole", (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
