@@ -55,9 +55,9 @@ async function begin() {
             case 'View all roles':
                 viewRoles();
                 break;
-            case 'Add an employee':
-                addEmployee();
-                break;                
+            case 'Add a role':
+                AddaRole();
+                break;  
             case 'View all employees':
                 viewEmployees();
                 break;
@@ -136,8 +136,8 @@ async function begin() {
     ]).then(function (data) {
         db.promise().query(`INSERT INTO departments (department_name) VALUES ('${data.addDepartment}')`);
     })
-        const addRolePrompt = () => {
-            inquirer.prompt([
+    const AddaRole = () => {
+    inquirer.prompt([
 
                 {
                     type: "input",
@@ -146,9 +146,8 @@ async function begin() {
                 }
 
             ]).then(function (data) {
-                db.query('INSERT INTO roles', function (err, results) {
-                    console.log(results);
-                });
+                db.promise().query(`INSERT INTO roles (role_id) VALUES ('${data.addRole}')`);
+            })
                 inquirer.prompt([
 
                     {
@@ -159,9 +158,9 @@ async function begin() {
 
 
                     }])
-            })
+            }
         }
-    }
+    
   
          const addEmployeePrompt = () => {
             inquirer.prompt([
