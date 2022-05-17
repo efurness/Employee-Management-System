@@ -40,7 +40,7 @@ async function begin() {
         {
             type: "list",
             message: "choose an option",
-            choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "update an employee role", "update employee managers", "delete employee", "delete role", "delete department"],
+            choices: ["View all departments", "View all roles", "View all employees", "Add a department", "Add a role", "Add an employee", "update a role", "View employee manager", "update employee managers", "delete employee", "delete role", "delete department"],
             name: "prompt",
         }
 
@@ -56,26 +56,32 @@ async function begin() {
                 viewRoles();
                 break;
             case 'Add a role':
-                AddaRole();
+                AddRoles();
                 break;  
             case 'View all employees':
                 viewEmployees();
                 break;
-            case 'update employee role':
-                updateEmployees();
+            case 'Add an employee':
+                AddEmployee();
+                break;
+            case 'update roles':
+                updateRoles();
+                break;
+            case 'View employee manager':
+                ViewEmployeeManager();
                 break;
             case 'Update Employee Managers':
                 updateEmployeeManager();
                 break;
-            case 'Delete Employee':
-                deleteEmployee();
-                break;
-            case 'Delete role':
-                deleteEmployee();
-                break;
-            case 'Delete Department':
-                deleteEmployee();
-                break;
+            // case 'Delete Employee':
+            //     deleteEmployee();
+            //     break;
+            // case 'Delete role':
+            //     deleteEmployee();
+            //     break;
+            // case 'Delete Department':
+            //     deleteEmployee();
+            //     break;
             default:
                 break;
         }
@@ -109,15 +115,15 @@ async function begin() {
         });
     }
 
-    const viewEmpManager = () => {
-        db.query("SELECT manager_id FROM employees", async (err, employee) => {
+    const ViewEmployeeManager = () => {
+        db.query("SELECT manager_id FROM employees", async (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
     }
-    const UpdateEmp = () => {
-        db.query("UPDATE employee FROM employees", async (err, employee) => {
+    const updateEmployeeManager = () => {
+        db.query("UPDATE employee FROM employees", async (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
@@ -136,7 +142,8 @@ async function begin() {
     ]).then(function (data) {
         db.promise().query(`INSERT INTO departments (department_name) VALUES ('${data.addDepartment}')`);
     })
-    const AddaRole = () => {
+
+    const AddRoles = () => {
     inquirer.prompt([
 
                 {
@@ -160,9 +167,8 @@ async function begin() {
                     }])
             }
         }
-    
   
-         const addEmployeePrompt = () => {
+         const AddEmployee = () => {
             inquirer.prompt([
 
                 {
@@ -173,7 +179,7 @@ async function begin() {
                 },
 
             ]).then(function (data) {
-                db.query('INSERT INTO employee first_name', function (err, results) {
+                db.query('INSERT INTO employee first_name', function (_err, results) {
                     console.log(results);
                 });
 
@@ -186,7 +192,7 @@ async function begin() {
                 },
 
             ]).then(function (data) {
-                db.query('INSERT INTO employee last_name', function (err, results) {
+                db.query('INSERT INTO employee last_name', function (_err, results) {
                     console.log(results);
                 });
 
@@ -198,7 +204,7 @@ async function begin() {
 
                 },
             ]).then(function (data) {
-                db.query('INSERT INTO employee salary', function (err, results) {
+                db.query('INSERT INTO employee salary', function (_err, results) {
                     console.log(results);
                 });
                 
@@ -212,7 +218,7 @@ async function begin() {
                 },
 
             ]).then(function (data) {
-                db.query('INSERT INTO employee department', function (err, results) {
+                db.query('INSERT INTO employee department', function (_err, results) {
                     console.log(results);
                 });
                 
@@ -221,7 +227,7 @@ async function begin() {
         
         }
             )})})}
-         const updateRolesPrompt = () => {
+         const updateRoles = () => {
             inquirer.prompt([
 
                 {
