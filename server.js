@@ -17,7 +17,7 @@ app.use(express.json());
 const db = mysql.createConnection(
     {
         host: 'localhost',
-        dialect: 'mysql',
+        // dialect: 'mysql',
         // MySQL username,
         user: 'root',
         // TODO: Add MySQL password here
@@ -50,7 +50,7 @@ async function begin() {
                 viewDepartmemts();
                 break;
             case 'Add a department':
-                AddDepartmemts();
+                AddDepartments();
                 break;
             case 'View all roles':
                 viewRoles();
@@ -84,7 +84,7 @@ async function begin() {
 }
 
     const viewDepartmemts = () => {
-        db.query("SELECT * FROM department", (err, res) => {
+        db.query("SELECT * FROM departments", (err, res) => {
         if (err) throw err;
         console.table(res);
         begin()
@@ -93,7 +93,7 @@ async function begin() {
     }
 
     const viewRoles = () => {
-        db.query("SELECT * FROM emprole", (err, res) => {
+        db.query("SELECT * FROM roles", (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
@@ -102,7 +102,7 @@ async function begin() {
     }
 
     const viewEmployees = () => {
-        db.query("SELECT title FROM employee", (err, res) => {
+        db.query("SELECT * FROM employees", (err, res) => {
             if (err) throw err;
             console.table(res);
             begin()
@@ -110,21 +110,21 @@ async function begin() {
     }
 
     const viewEmpManager = () => {
-        db.query("SELECT manager_id FROM employee", async (err, employee) => {
+        db.query("SELECT manager_id FROM employees", async (err, employee) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
     }
     const UpdateEmp = () => {
-        db.query("UPDATE employee FROM employee", async (err, employee) => {
+        db.query("UPDATE employee FROM employees", async (err, employee) => {
             if (err) throw err;
             console.table(res);
             begin()
         });
     }
 
-    const addDepartmentPrompt = () => {
+    const AddDepartments = () => {
     inquirer.prompt([
 
         {
@@ -134,11 +134,8 @@ async function begin() {
         }
 
     ]).then(function (data) {
-        db.query('INSERT INTO department', function (err, results) {
-            console.log(results);
-        });
-
-
+        db.promise().query(`INSERT INTO departments (department_name) VALUES ('${data.addDepartment}')`);
+    })
         const addRolePrompt = () => {
             inquirer.prompt([
 
@@ -149,7 +146,7 @@ async function begin() {
                 }
 
             ]).then(function (data) {
-                db.query('INSERT INTO department', function (err, results) {
+                db.query('INSERT INTO roles', function (err, results) {
                     console.log(results);
                 });
                 inquirer.prompt([
@@ -158,14 +155,14 @@ async function begin() {
                         type: "list",
                         message: "What department do you want your role to belong to?",
                         name: "addType",
-                        choices: [("IT"), ("DESIGN"), ("ATHROPOLOGY"), ("SCIENCE"), ("WEB")]
+                        choices: [('IT'), ('DESIGN'), ('ATHROPOLOGY'), ('SCIENCE'), ('WEB')]
 
 
                     }])
             })
         }
-    })
-}   
+    }
+  
          const addEmployeePrompt = () => {
             inquirer.prompt([
 
@@ -225,7 +222,7 @@ async function begin() {
         
         }
             )})})}
-         const updateRolePrompt = () => {
+         const updateRolesPrompt = () => {
             inquirer.prompt([
 
                 {
