@@ -154,7 +154,7 @@ async function begin() {
                 },
 
             ]).then(function (data) {
-                db.promise().query(`INSERT INTO roles (role_id) VALUES ('${data.addRole}')`);
+                db.promise().query(`INSERT INTO roles (title, salary, department_id) VALUES ('${data.addRole}')`);
             })
                 inquirer.prompt([
 

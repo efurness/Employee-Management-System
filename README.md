@@ -41,11 +41,11 @@ My challenges for this project were mainly to set up the database and tables in 
 [Employment Management System](https://github.com/efurness/Employee-Management-System.git)
 
 
-[Employment Management System VIDEO] (GOOGLE DRIVE)] ()
+[Employment Management System VIDEO] (https://drive.google.com/file/d/1LQs4J0-UkJSf8bdUjysyujpgGdS83KpY/view)
  
 [Also on Screencasify:]()
 
-[Screenshot] [Project screenshot](assets/images/employment.gif) 
+[Screenshot] [Project screenshot](employment.gif) 
 
 
 * For additional help or questions about collaboration, please reach out to Ellen.Furness@du.edu.
