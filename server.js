@@ -6,7 +6,7 @@ const mysql = require('mysql2');
 
 
 // process environment port for Heroku and local host 3001 port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const app = express();
 
 // Express middleware
@@ -83,6 +83,7 @@ async function begin() {
             //     deleteEmployee();
             //     break;
             default:
+                text = "End of questions"
                 break;
         }
     })
@@ -150,7 +151,7 @@ async function begin() {
                     type: "input",
                     message: "what is the name of the role you wish to add?",
                     name: "addRole",
-                }
+                },
 
             ]).then(function (data) {
                 db.promise().query(`INSERT INTO roles (role_id) VALUES ('${data.addRole}')`);
@@ -168,65 +169,11 @@ async function begin() {
             }
         }
   
-         const AddEmployee = () => {
-            inquirer.prompt([
+         
+        db.query('INSERT INTO employee (first_name, last_name) VALUES ("Ellen", "F")', function (_err, results) {
+            console.log(results);
+        });
 
-                {
-                    type: "input",
-                    message: "what is the first name of the employee you wish to add?",
-                    name: "addEmployee",
-
-                },
-
-            ]).then(function (data) {
-                db.query('INSERT INTO employee first_name', function (_err, results) {
-                    console.log(results);
-                });
-
-                inquirer.prompt([
-                {
-                    type: "input",
-                    message: "what is the last name of the employee you wish to add?",
-                    name: "firstNameEmployee",
-
-                },
-
-            ]).then(function (data) {
-                db.query('INSERT INTO employee last_name', function (_err, results) {
-                    console.log(results);
-                });
-
-                inquirer.prompt([
-                {
-                    type: "input",
-                    message: "what is the salary of the employee you wish to add?",
-                    name: "salaryEmployee",
-
-                },
-            ]).then(function (data) {
-                db.query('INSERT INTO employee salary', function (_err, results) {
-                    console.log(results);
-                });
-                
-                inquirer.prompt([
-
-                {
-                    type: "input",
-                    message: "what is the department of the employee you wish to add?",
-                    name: "departmentEmployee",
-
-                },
-
-            ]).then(function (data) {
-                db.query('INSERT INTO employee department', function (_err, results) {
-                    console.log(results);
-                });
-                
-                
-            })
-        
-        }
-            )})})}
          const updateRoles = () => {
             inquirer.prompt([
 
@@ -238,6 +185,27 @@ async function begin() {
 
             ])
 
+        }
+
+        const AddEmployee = () => {
+    inquirer.prompt([
+        {
+            type: "input",
+            message: "what is the first name of the employee you wish to add?",
+            name: "first_name"
+        },
+        {
+            type: "input",
+            message: "what is the last name of the employee you wish to add?",
+            name: "last_name",
+        },]).then(function (data) {
+                db.query('INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, 1, 1);', [data.first_name, data.last_name], function (err, results) {
+                    if (err) throw err;
+                    viewEmployees();
+                    begin();
+                });
+
+            })
         }
 
 
