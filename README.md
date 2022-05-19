@@ -12,7 +12,7 @@
 
 # DESCRIPTION 
 
-This is a command line application running on NODE JS and Express and using Inquirer to take user input to output a series of tables for an employment database using a mysql connection. An async function was used to initialize application followed by a prompt for user to select to view a series of tables including departments, roles and employees with a switch statement prompting each question.  The program worked well with the view prompts and SELECT all queries, and successful in adding a department and employees, however to add roles was difficult to complete because even though they followed the switch statements for each of them, the const variables were greyed out.  That is a work in progress.
+This is a command line application running on NODE JS, Express and mySQL.  The project used Inquirer to take user input to output a series of tables for an employment database using a mysql connection. An async function was used to initialize the application followed by prompts for user to select to view a series of tables including departments, roles and employees with a switch statement prompting each question.  The program worked well with the views prompts and using SELECT all queries, and also successful in adding a department and employees, however adding roles and managers were complex and difficult to complete.  
 
 # INSTALLATION 
 
@@ -36,7 +36,7 @@ Tests were run to establish all the various sql queries.
  
 # QUESTIONS 
 
-My challenges for this project were mainly to set up the database and tables in the schema having the class activities as a basis.  The server.js file contained all the questions and prompts so the code was extensive.  The seeds file went well once I had all the name strings in quotes and parenthesis and commas in the right place, very detailed work.
+After setting up the database and tables in the schema file my challenges were with the adding of roles including managers. The server.js file contained all the questions and prompts so the code was extensive.  The seeds file went well once I had all the name strings in quotes, parenthesis and commas in the right place, very detailed work.  I had to use a separate port than 3001 because the connection notified that it was inaccesible.
 
 [Employment Management System](https://github.com/efurness/Employee-Management-System.git)
 
